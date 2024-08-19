@@ -15,18 +15,9 @@
 - **Finite Element Method (FEM)**: Ideal for complex geometries and adaptive mesh refinement.
 - **Spectral Methods**: Provides high accuracy for smooth solutions and periodic boundary conditions.
 
-## Getting Started
-
-To use PDEngine.jl, you need to have Julia installed. You can install the package using Julia's package manager.
-
-1. **Install PDEngine.jl**:
-    ```julia
-    using Pkg
-    Pkg.add("PDEngine")
-    ```
-
-2. **Using the Package**:
-    ```julia
+## Usage
+**Using the Package**:
+```julia
     using PDEngine
 
     # Example: Solving the heat equation in 1D
