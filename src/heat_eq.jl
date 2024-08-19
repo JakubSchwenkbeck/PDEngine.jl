@@ -86,7 +86,7 @@ function heat_eq_1d_fem(N, α, T, Δx, Δt)
     # Time-stepping loop
     for _ in 1:num_steps
         # Update the load vector based on the previous solution
-        f[2:end-1] = u[2:end-1]  # In this example, no external source term
+        f[2:end-1] = u[2:end-1]  # HERE, no external source term!!!
         
         # Solve for the new temperature field
         u_new = K \ f
