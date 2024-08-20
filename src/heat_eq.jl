@@ -2,6 +2,13 @@
 Solve the 1D heat equation using the finite difference method (FDM).
 The heat equation is given by: ∂u/∂t = α ∇²u
 where α is the thermal diffusivity.
+
+Arguments:
+- N: Number of spatial grid points (excluding boundary points)
+- α: Thermal diffusivity
+- T: Total simulation time
+- Δx: Spatial step size
+- Δt: Temporal step size
 """
 function heat_eq_1d_fdm(N, α, T, Δx, Δt)
     # Create a grid of spatial points
