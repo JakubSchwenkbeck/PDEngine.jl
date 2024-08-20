@@ -10,7 +10,7 @@ include("navier_stokes_eq.jl")
 include("poisson_eq.jl")
 
 # Export functions for external use
-export heat_eq_1d_fdm, heat_eq_1d_fem, wave_eq_1d_fdm, wave_eq_1d_fem,navier_stokes_2d, poisson_2d_fdm, poisson_2d_fem
+export heat_eq_1d_fdm, heat_eq_1d_fem,heat_eq_1d_crank_nicolson, wave_eq_1d_fdm, wave_eq_1d_fem,navier_stokes_2d, poisson_2d_fdm, poisson_2d_fem 
 
 # Wrapper functions or additional setup 
 # initialize some parameters or configurations
