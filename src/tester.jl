@@ -31,9 +31,45 @@ function test_heat_equation(N_values, α, T, Δt)
 end
 
 # Example test parameters
-N_values = [5,10, 20, 50, 100,500,1000]  # Different grid resolutions
-α = 1.0                       # Thermal diffusivity
-T = 0.000000001                      # Total simulation time --v
-Δt = 0.000000001                   # Temporal step size      --> Biggest impact on accuracy!
+heat_N_values = [5,10, 20, 50, 100,500,1000]  # Different grid resolutions
+heat_heat_α = 1.0                       # Thermal diffusivity
+T = 1e-10                    # Total simulation time --v
+heat_Δt = 1e-10            # Temporal step size      --> Biggest impact on accuracy!
 
-test_heat_equation(N_values, α, T, Δt)
+#test_heat_equation(heat_N_values, heat_α, heat_T, heat_Δt)
+
+function test_wave_equation(N_values, c, T, Δt)
+    for N in N_values
+        Δx = 1.0 / N    # Spatial step size
+
+        # Analytical solution at final time T
+        analytical_solution(x, t) = sin(π * x) * cos(c * π * t)
+
+        # Solve using FDM
+        u_fdm = wave_eq_1d_fdm(N, c, T, Δx, Δt)
+
+        # Solve using FEM
+        u_fem = wave_eq_1d_fem(N, c, T, Δx, Δt)
+
+        # Compare with analytical solution
+        x = 0:Δx:1
+        u_exact = analytical_solution.(x, T)
+
+        # Calculate relative error norms
+        error_fdm = norm(u_fdm - u_exact) / norm(u_exact)
+        error_fem = norm(u_fem - u_exact) / norm(u_exact)
+
+        println("Grid Points: $N")
+        println("Relative Error in FDM: $error_fdm")
+        println("Relative Error in FEM: $error_fem")
+        println("------------------------------------------------")
+    end
+end
+
+# Example test parameters
+wave_N_values = [5, 10, 20, 50, 100, 500, 1000]  # Different grid resolutions
+wave_c = 1.0                         # Wave speed
+wave_T = 0.1                         # Total simulation time (ensure it is an appropriate value for the wave propagation)
+wave_Δt = 0.01                       # Temporal step size
+
+test_wave_equation(wave_N_values, wave_c, wave_T, wave_Δt)
