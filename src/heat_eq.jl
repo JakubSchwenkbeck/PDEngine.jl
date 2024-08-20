@@ -20,7 +20,10 @@ function heat_eq_1d_fdm(N, α, T, Δx, Δt)
         for i in 2:N
             u_new[i] = u[i] + α * Δt / Δx^2 * (u[i+1] - 2*u[i] + u[i-1])
         end
-        
+          # Apply boundary conditions (Dirichlet: u = 0 at the boundaries)
+          u_new[1] = 0
+          u_new[end] = 0
+                 
         # Swap references to avoid unnecessary copying
         u, u_new = u_new, u
     end
