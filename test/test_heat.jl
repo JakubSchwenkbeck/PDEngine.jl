@@ -32,9 +32,9 @@ function test_heat_equation(N_values, α, T, Δt)
         end
 
         # Calculate relative error norms
-        error_fdm = abs((norm(u_fdm - u_exact) / norm(u_exact) )-0)
-        error_fem = abs(norm((u_fem - u_exact) / norm(u_exact))-0)
-        error_cn = abs((norm(u_cn - u_exact) / norm(u_exact))-0)
+        error_fdm = abs((norm(u_fdm - u_exact) / norm(u_exact) )-1)
+        error_fem = abs(norm((u_fem - u_exact) / norm(u_exact))-1)
+        error_cn = abs((norm(u_cn - u_exact) / norm(u_exact))-1)
         println("Grid Points: $N")
         println("Relative Error in FDM: $error_fdm")
         println("Relative Error in FEM: $error_fem")
