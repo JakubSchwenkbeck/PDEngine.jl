@@ -31,9 +31,9 @@ function test_heat_equation(N_values, α, T, Δt)
 end
 
 # Example test parameters
-N_values = [10, 20, 50, 100]  # Different grid resolutions
+N_values = [5,10, 20, 50, 100,500,1000]  # Different grid resolutions
 α = 1.0                       # Thermal diffusivity
-T = 0.01                      # Total simulation time
-Δt = 0.0001                   # Temporal step size
+T = 0.000000001                      # Total simulation time --v
+Δt = 0.000000001                   # Temporal step size      --> Biggest impact on accuracy!
 
 test_heat_equation(N_values, α, T, Δt)
