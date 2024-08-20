@@ -1,4 +1,3 @@
-
 """
 Solve 2D Poisson's equation using the finite difference method.
 Poisson's equation is given by: ∇²u = -f

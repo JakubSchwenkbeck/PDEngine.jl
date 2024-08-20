@@ -3,7 +3,7 @@ Solve the 1D heat equation using the finite difference method (FDM).
 The heat equation is given by: ∂u/∂t = α ∇²u
 where α is the thermal diffusivity.
 """
-function heat_eq_1d(N, α, T, Δx, Δt)
+function heat_eq_1d_fdm(N, α, T, Δx, Δt)
     # Create a grid of spatial points
     x = 0:Δx:1
 
