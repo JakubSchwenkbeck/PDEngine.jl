@@ -3,7 +3,7 @@ Solve 2D Poisson's equation using the finite difference method.
 Poisson's equation is given by: ∇²u = -f
 where f is a source term.
 """
-function poisson_2d_fdm(N, f, Δx)
+function poisson_fdm(N, f, Δx)
     # Initialize solution field
     u = zeros(N+1, N+1)
     u_new = similar(u)
@@ -36,7 +36,7 @@ Arguments:
 Returns:
 - u: The final solution field
 """
-function poisson_2d_fem(N, f, Δx)
+function poisson_fem(N, f, Δx)
     # Number of nodes
     num_nodes = (N + 1) * (N + 1)
 

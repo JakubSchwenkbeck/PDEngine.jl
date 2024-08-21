@@ -5,7 +5,7 @@ Solve the 1D wave equation using the finite difference method.
 The wave equation is given by: ∂²u/∂t² = c² ∇²u
 where c is the wave speed.
 """
-function wave_eq_1d_fdm(N, c, T, Δx, Δt)
+function wave_fdm(N, c, T, Δx, Δt)
     # Create a grid of spatial points
     x = 0:Δx:1
 
@@ -48,7 +48,7 @@ Arguments:
 Returns:
 - u: The final displacement field
 """
-function wave_eq_1d_fem(N, c, T, Δx, Δt)
+function wave_fem(N, c, T, Δx, Δt)
     # Number of time steps
     num_steps = Int(T / Δt)
     

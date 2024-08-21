@@ -10,7 +10,7 @@ include("navier_stokes_eq.jl")
 include("poisson_eq.jl")
 
 # Export functions for external use
-export heat_eq_1d_fdm, heat_eq_1d_fem,heat_eq_1d_crank_nicolson, wave_eq_1d_fdm, wave_eq_1d_fem,navier_stokes_2d, poisson_2d_fdm, poisson_2d_fem 
+export heat_fdm, heat_fem,heat_nicolson,heat_spectral, wave_fdm, wave_fem,navier_stokes, poisson_fdm, poisson_fem 
 
 # Wrapper functions or additional setup 
 # initialize some parameters or configurations
@@ -19,13 +19,14 @@ export heat_eq_1d_fdm, heat_eq_1d_fem,heat_eq_1d_crank_nicolson, wave_eq_1d_fdm,
 function info()
     @info "PDEngine.jl: A Julia library for solving partial differential equations (PDEs)."
     @info "Available solvers:"
-    @info "- heat_eq_1d_fdm: Solves the 1D heat equation with the finite difference method"
-    @info "- heat_eq_1d_fem: Solves the 1D heat equation with the finite element method"
-    @info "- wave_eq_1d_fdm: Solves the 1D wave equation with the finite difference method"
-    @info "- wave_eq_1d_fem: Solves the 1D wave equation with the finite element method"
-    @info "- navier_stokes_2d: Solves the 2D Navier-Stokes equations."
-    @info "- poisson_2d_fdm: Solves the 2D Poisson's equation with the finite difference method"
-    @info "- poisson_2d_fem: Solves the 2D Poisson's equation with the finite element method"
+    @info "- heat_fdm: Solves the 1D heat equation with the finite difference method"
+    @info "- heat_fem: Solves the 1D heat equation with the finite element method"
+    @info "- heat_nicolson: Solves the 1D heat equation with the crank nicolson method"
+    @info "- wave_fdm: Solves the 1D wave equation with the finite difference method"
+    @info "- wave_fem: Solves the 1D wave equation with the finite element method"
+    @info "- navier_stokes: Solves the 2D Navier-Stokes equations."
+    @info "- poisson_fdm: Solves the 2D Poisson's equation with the finite difference method"
+    @info "- poisson_fem: Solves the 2D Poisson's equation with the finite element method"
 end
 
 end # module PDEngine

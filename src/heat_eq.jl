@@ -1,4 +1,54 @@
-using LinearAlgebra
+using LinearAlgebra,FFTW
+"""
+heat(N, α, T, Δx, Δt) is the default function using ...
+
+
+"""
+
+"""
+    heat_spectral(N, α, T, Δx, Δt)
+
+Solve the 1D heat equation using the Spectral Method.
+
+# Arguments
+- `N::Int`: The number of spatial grid points (excluding boundary points).
+- `α::Float64`: The thermal diffusivity or the diffusion coefficient.
+- `T::Float64`: The total simulation time.
+- `Δx::Float64`: The spatial step size.
+- `Δt::Float64`: The time step size.
+
+# Returns
+- `Vector{Float64}`: The temperature distribution at the final time step.
+"""
+function heat_spectral(N, α, T, Δx, Δt)
+    # Define the spatial domain
+    x = 0:Δx:1
+    
+    # Initialize the temperature field with a Gaussian profile
+    u = exp.(-((x .- 0.5).^2) / (2 * (0.1)^2))
+    
+    # Calculate the wavenumbers (k) for the spectral method
+    k = vcat(0:N ÷ 2, -N ÷ 2 + 1:-1) * (2 * π)
+    
+    # Precompute the Fourier transform of the initial condition
+    u_hat = rfft(u)
+    
+    # Time-stepping loop
+    num_steps = Int(T / Δt)
+    for _ in 1:num_steps
+        # Compute the time evolution in Fourier space
+        u_hat .= u_hat .* exp.(-α * k.^2 * Δt)
+    end
+    
+    # Inverse Fourier transform to get the solution in physical space
+    u = irfft(u_hat, N+1)
+    
+    return u
+end
+
+
+
+
 
 """
     check_stability(α, Δx, Δt)
@@ -25,7 +75,7 @@ end
 
 
 """
-    heat_eq_1d_fdm(N, α, T, Δx, Δt)
+    heat_fdm(N, α, T, Δx, Δt)
 
 Solve the 1D heat equation using the Finite Difference Method (FDM).
 
@@ -39,7 +89,7 @@ Solve the 1D heat equation using the Finite Difference Method (FDM).
 # Returns
 - `Vector{Float64}`: The temperature distribution at the final time step.
 """
-function heat_eq_1d_fdm(N, α, T, Δx, Δt)
+function heat_fdm(N, α, T, Δx, Δt)
     # Check if the stability condition is satisfied
     stability, message = check_stability(α, Δx, Δt)
     if !stability
@@ -79,7 +129,7 @@ function heat_eq_1d_fdm(N, α, T, Δx, Δt)
 end
 
 """
-    heat_eq_1d_fem(N, α, T, Δx, Δt)
+    heat_fem(N, α, T, Δx, Δt)
 
 Solve the 1D heat equation using the Finite Element Method (FEM).
 
@@ -93,7 +143,7 @@ Solve the 1D heat equation using the Finite Element Method (FEM).
 # Returns
 - `Vector{Float64}`: The temperature distribution at the final time step.
 """
-function heat_eq_1d_fem(N, α, T, Δx, Δt)
+function heat_fem(N, α, T, Δx, Δt)
     # Check if the stability condition is satisfied
     stability, message = check_stability(α, Δx, Δt)
     if !stability
@@ -161,7 +211,7 @@ function heat_eq_1d_fem(N, α, T, Δx, Δt)
 end
 
 """
-    heat_eq_1d_crank_nicolson(N, α, T, Δx, Δt)
+    heat_crank_nicolson(N, α, T, Δx, Δt)
 
 Solve the 1D heat equation using the Crank-Nicolson method.
 
@@ -175,7 +225,7 @@ Solve the 1D heat equation using the Crank-Nicolson method.
 # Returns
 - `Vector{Float64}`: The temperature distribution at the final time step.
 """
-function heat_eq_1d_crank_nicolson(N, α, T, Δx, Δt)
+function heat_nicolson(N, α, T, Δx, Δt)
     # Check if the stability condition is satisfied
     stability, message = check_stability(α, Δx, Δt)
     if !stability

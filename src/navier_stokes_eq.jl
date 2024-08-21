@@ -16,7 +16,7 @@ Returns:
 - v: y-component of velocity field
 - p: Pressure field
 """
-function navier_stokes_2d(N, ν, T, Δx, Δt)
+function navier_stokes(N, ν, T, Δx, Δt)
     # Number of grid points (including boundaries)
     N_plus = N + 1
     
