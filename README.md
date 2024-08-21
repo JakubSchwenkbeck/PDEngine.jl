@@ -1,7 +1,9 @@
-# PDEngine.jl
+# PDEngine.jl (v0.0.9)
 
 **PDEngine.jl** is a Julia library designed for solving partial differential equations (PDEs) using a variety of numerical methods. This library aims to provide efficient, flexible, and easy-to-use solvers for some of the most common PDEs encountered in scientific and engineering problems.
 [Documentation](https://jakubschwenkbeck.github.io/PDEngine/)
+
+## v0.0.9 now available : "pkg> add PDEngine" !!
 
 ## Features
 
@@ -35,4 +37,14 @@
     poisson_solution = poisson_2d_fem(N, f, Δx)  # solving the poisson equations with the finite elements method
 ```
 
+## Currently working on:
+### v0.0.95
+- Better Function Naming
+- Impementing Spectral methods
+- Setting a default method with very simple Name like heat(params)
+### v0.1.0
+- Parallel computing to get the full speed of julia
+- more methods and or PEDs
+- ensure all Methods work without any flaws
+- ...
     
