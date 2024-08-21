@@ -23,6 +23,7 @@ function check_stability(α, Δx, Δt)
     end
 end
 
+
 """
     heat_eq_1d_fdm(N, α, T, Δx, Δt)
 
