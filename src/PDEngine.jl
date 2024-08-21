@@ -1,7 +1,5 @@
 module PDEngine
 
-# Import necessary packages
-using Printf  # For formatted printing
 
 # Include PDE solver files
 include("heat_eq.jl")
