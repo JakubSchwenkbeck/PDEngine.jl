@@ -27,10 +27,12 @@
     T = 0.1
     α = 0.01
     N = 100
-    temperature_distribution = heat_eq_1d(N, α, T, Δx, Δt)
+    temperature_distribution = heat_eq_1d_fdm(N, α, T, Δx, Δt) # solving the heat equation with the finite differences method
 
     # Example: Solving Poisson's equation in 2D
     f = zeros(N+1, N+1)  # Example source term
     Δx = 0.01
-    poisson_solution = poisson_2d(N, f, Δx)
-    ```
+    poisson_solution = poisson_2d_fem(N, f, Δx)  # solving the poisson equations with the finite elements method
+```
+
+    
