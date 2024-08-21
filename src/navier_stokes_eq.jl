@@ -116,4 +116,4 @@ T = 1.0
 Δx = 1.0 / N
 Δt = 0.001
 
-u, v, p = navier_stokes_2d(N, ν, T, Δx, Δt)
+u, v, p = navier_stokes(N, ν, T, Δx, Δt)
