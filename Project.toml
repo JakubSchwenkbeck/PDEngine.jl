@@ -3,6 +3,8 @@ name = "PDEngine"
 uuid = "0e6f3264-acce-4f27-82c9-0b40b85afed0"
 version = "0.0.9"
 
+[deps]
+LinearAlgebra = "37e2e46d-f89d-539d-b4ee-838fcccc9c8e"
 
 [compat]
 julia = "1.6"
