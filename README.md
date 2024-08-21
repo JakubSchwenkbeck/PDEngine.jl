@@ -42,7 +42,7 @@
 - Better Function Naming
 - Impementing Spectral methods
 - Setting a default method with very simple Name like heat(params)
-### v0.1.0
+### v0.1.0 (Full release)
 - Parallel computing to get the full speed of julia
 - more methods and or PEDs
 - ensure all Methods work without any flaws
