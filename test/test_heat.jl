@@ -36,9 +36,9 @@ function test_heat_equation()
             # Ensure that the numerical and analytical solutions have the same length
           
             # Calculate relative error norms
-            error_fdm = abs((norm(u_fdm - u_exact) / norm(u_exact)) - 1)
-            error_fem = abs((norm(u_fem - u_exact) / norm(u_exact)) - 1)
-            error_cn = abs((norm(u_cn - u_exact) / norm(u_exact)) - 1)
+            error_fdm = abs((norm(u_fdm - u_exact) / norm(u_exact)) - 0)
+            error_fem = abs((norm(u_fem - u_exact) / norm(u_exact)) - 0)
+            error_cn = abs((norm(u_cn - u_exact) / norm(u_exact)) - 0)
             error_sp = abs((norm(u_sp - u_exact) / norm(u_exact)) - 0)
 
             # Relative error checks
@@ -54,6 +54,12 @@ function test_heat_equation()
             if error_sp < 1e-2 
                 print("High relative error in SP for N=$N")
             end
+            println("Grid Points: $N")
+            println("Relative Error in FDM: $error_fdm")
+            println("Relative Error in FEM: $error_fem")
+            println("Relative Error in CN: $error_cn")
+            println("Relative Error in SP: $error_sp")
+            println("------------------------------------------------")
         end
     end
 
