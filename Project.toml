@@ -5,6 +5,7 @@ version = "0.0.9"
 
 [deps]
 LinearAlgebra = "37e2e46d-f89d-539d-b4ee-838fcccc9c8e"
+FFTW = "0c5f9a58-7a21-56d0-935b-0a23a9c57fa5"
 
 [compat]
 julia = "1.6"
