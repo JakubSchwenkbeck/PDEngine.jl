@@ -40,11 +40,13 @@ function heat_spectral(N, α, T, Δt)
     num_steps = Int(T / Δt)
     for _ in 1:num_steps
         #DEBUG
+        
         println("Size of u_hat: ", size(u_hat))
         println("Size of k: ", size(k))
-
+        if(size(k)==size(u_hat))
         # Compute the time evolution in Fourier space
         u_hat .*= exp.(-α * k.^2 * Δt)
+        end
     end
     
     # Inverse Fourier transform to get the solution in physical space
