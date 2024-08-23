@@ -29,7 +29,7 @@ function test_heat_equation()
             # Solve using Crank-Nicolson
             u_cn = heat_nicolson(N, heat_α, heat_T, Δx, heat_Δt)
 
-            u_sp = heat_spectral(N, heat_α, heat_T, Δx, heat_Δt)
+            u_sp = heat_spectral(N, heat_α, heat_T, heat_Δt)
             # Analytical solution at final time
             u_exact = analytical_solution.(x, heat_T)
 
