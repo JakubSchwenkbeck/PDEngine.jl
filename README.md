@@ -4,6 +4,7 @@
 [Documentation](https://jakubschwenkbeck.github.io/PDEngine.jl/)
 
 ## v0.0.9 now available : "pkg> add PDEngine" !!
+[Pull-Request](https://github.com/JuliaRegistries/General/pull/113590)
 
 ## Features
 
