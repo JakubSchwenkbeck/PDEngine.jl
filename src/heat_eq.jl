@@ -23,33 +23,31 @@ Solve the 1D heat equation using the Spectral Method.
 
 function heat_spectral(N, α, T, Δx, Δt)
     # Define the spatial domain
-    x = 0:Δx:1
     L = 1.0
     dx = L / N
-    x = dx * (0:N)
-    
+    x = dx * (0:N)  # This includes N+1 points
+
     # Initialize the temperature field with a Gaussian profile
     u = exp.(-((x .- 0.5).^2) / (2 * (0.1)^2))
     
     # Calculate the wavenumbers (k) for the spectral method
-    k = 2 * π * (0:(N ÷ 2)) / L
-    
+    k = 2 * π * [0:(N ÷ 2); -N ÷ 2+1:-1] / L
+
     # Precompute the Fourier transform of the initial condition
     u_hat = rfft(u)
-    
+
     # Time-stepping loop
     num_steps = Int(T / Δt)
     for _ in 1:num_steps
         # Compute the time evolution in Fourier space
         u_hat .= u_hat .* exp.(-α * k.^2 * Δt)
     end
-    
+
     # Inverse Fourier transform to get the solution in physical space
     u = irfft(u_hat, N + 1)
-    
+
     return u
 end
-
 
 
 
