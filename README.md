@@ -48,4 +48,11 @@
 - more methods and or PEDs
 - ensure all Methods work without any flaws
 - ...
+
+## Papers used:
+
+- [Lehman](https://www.lehman.edu/faculty/dgaranin/Mathematical_Physics/Mathematical_physics-13-Partial_differential_equations.pdf) : Numerical Solutions for PDEs using Mathematica
+- [Spectral Methods](https://www.mech.kth.se/~ardeshir/courses/literature/Notes_Spectral_Methods.pdf) : Spectral Methods and tests by Phillip Schlatter
+- [ByJus](https://byjus.com/maths/partial-differential-equation/) : Representation of a PDE
+- [ScholarPedia](http://www.scholarpedia.org/article/Partial_differential_equation) : Introduction to PDEs
     
