@@ -143,7 +143,7 @@ function poisson_spectral(N, f, Δx)
     L[L .== 0] .= 1
 
 
-    if(size(F_hat)==size(L))
+    if( size(F_hat)==size(L) )
     # Solve in frequency domain
     U_hat = F_hat ./ L
     end 
