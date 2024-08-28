@@ -1,5 +1,4 @@
-# PDEngine.jl (v0.0.9)
-
+# PDEngine.jl [![version](https://juliahub.com/docs/General/PDEngine/stable/version.svg)](https://juliahub.com/ui/Packages/General/PDEngine)
 **PDEngine.jl** is a Julia library designed for solving partial differential equations (PDEs) using a variety of numerical methods. This library aims to provide efficient, flexible, and easy-to-use solvers for some of the most common PDEs encountered in scientific and engineering problems.
 [Documentation](https://jakubschwenkbeck.github.io/PDEngine.jl/)
 
