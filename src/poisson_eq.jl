@@ -127,7 +127,7 @@ function poisson_spectral(N, f, Δx)
     F = [f(xi, yi) for xi in x, yi in y]
     
     # Perform FFT
-    F_hat = fft2(F)
+    F_hat = rfft(F)
     
     # Frequency arrays
     kx = 2π * [0:N÷2; -N÷2+1:-1] / (N*Δx)
@@ -141,13 +141,32 @@ function poisson_spectral(N, f, Δx)
     
     # Avoid division by zero (at zero frequency)
     L[L .== 0] .= 1
-    
+
+
+    if(size(F_hat)==size(u_hat))
     # Solve in frequency domain
     U_hat = F_hat ./ L
-    
+    end 
+
     # Perform inverse FFT to get solution in spatial domain
-    u = ifft2(U_hat)
+    u = irfft(U_hat)
     
     # Return real part of the solution
     return real(u)
+end
+"""
+Create a meshgrid for given vectors `x` and `y`.
+
+# Arguments
+- `x::AbstractVector`: Vector of x-coordinates.
+- `y::AbstractVector`: Vector of y-coordinates.
+
+# Returns
+- `X::Array{T,2}`: 2D array where each row is a copy of `x`.
+- `Y::Array{T,2}`: 2D array where each column is a copy of `y`.
+"""
+function meshgrid(x, y)
+    X = [xi for xi in x, yi in y]
+    Y = [yi for xi in x, yi in y]
+    return X, Y
 end
