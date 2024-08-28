@@ -11,11 +11,16 @@ heat(N, α, T, Δx, Δt) is the default Wrapper function using the spectral meth
 # Returns
 - `Vector{Float64}`: The temperature distribution at the final time step.
 """
+
+# Catching too much input
 function heat(N, α, T, Δx, Δt)
-    heat_spectral(N, α, T, Δx, Δt)
+    heat_spectral(N, α, T, Δt)
 
 end
+function heat(N, α, T, Δt)
+    heat_spectral(N, α, T, Δt)
 
+end
 
 
 """
