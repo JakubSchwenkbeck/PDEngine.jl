@@ -1,7 +1,22 @@
+using FFTW  # For FFT operations
+
+
+
+function poisson(N,f,Δx)
+poisson_spectral(N,f,Δx)
+
+
+end
 """
 Solve 2D Poisson's equation using the finite difference method.
-Poisson's equation is given by: ∇²u = -f
-where f is a source term.
+
+# Arguments
+- `N::Int`: Number of grid points along each dimension (excluding boundaries).
+- `f::Array{Float64,2}`: A 2D array representing the source term on the grid.
+- `Δx::Float64`: Spatial step size.
+
+# Returns
+- `u::Array{Float64,2}`: The final solution field.
 """
 function poisson_fdm(N, f, Δx)
     # Initialize solution field
@@ -23,18 +38,17 @@ function poisson_fdm(N, f, Δx)
 
     return u
 end
+
 """
 Solve 2D Poisson's equation using the finite element method (FEM).
-Poisson's equation is given by: ∇²u = -f
-where f is a source term.
 
-Arguments:
-- N: Number of grid points along each dimension (excluding boundaries)
-- f: A function representing the source term
-- Δx: Spatial step size
+# Arguments
+- `N::Int`: Number of grid points along each dimension (excluding boundaries).
+- `f::Function`: A function representing the source term.
+- `Δx::Float64`: Spatial step size.
 
-Returns:
-- u: The final solution field
+# Returns
+- `u::Array{Float64,2}`: The final solution field.
 """
 function poisson_fem(N, f, Δx)
     # Number of nodes
@@ -90,4 +104,50 @@ function poisson_fem(N, f, Δx)
     u_grid = reshape(u, (N + 1, N + 1))
 
     return u_grid
+end
+
+"""
+Solve 2D Poisson's equation using the spectral method with FFTW.
+
+# Arguments
+- `N::Int`: Number of grid points along each dimension (excluding boundaries).
+- `f::Function`: A function representing the source term.
+- `Δx::Float64`: Spatial step size.
+
+# Returns
+- `u::Array{Float64,2}`: The final solution field.
+"""
+function poisson_spectral(N, f, Δx)
+    # Create grid
+    x = Δx * (0:N)
+    y = Δx * (0:N)
+    X, Y = meshgrid(x, y)
+    
+    # Create source term array
+    F = [f(xi, yi) for xi in x, yi in y]
+    
+    # Perform FFT
+    F_hat = fft2(F)
+    
+    # Frequency arrays
+    kx = 2π * [0:N÷2; -N÷2+1:-1] / (N*Δx)
+    ky = 2π * [0:N÷2; -N÷2+1:-1] / (N*Δx)
+    
+    # Create frequency grid
+    KX, KY = meshgrid(kx, ky)
+    
+    # Compute Laplacian in frequency domain
+    L = - (KX.^2 .+ KY.^2)
+    
+    # Avoid division by zero (at zero frequency)
+    L[L .== 0] .= 1
+    
+    # Solve in frequency domain
+    U_hat = F_hat ./ L
+    
+    # Perform inverse FFT to get solution in spatial domain
+    u = ifft2(U_hat)
+    
+    # Return real part of the solution
+    return real(u)
 end
