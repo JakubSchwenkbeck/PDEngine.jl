@@ -1,8 +1,9 @@
 
 
-include("../src/PDE_lib.jl")
-using .PDEngine
+
 using LinearAlgebra
+include("../src/PDEngine.jl")  
+using .PDEngine
 
 
 """
@@ -23,22 +24,25 @@ function test_poisson_2d(N_values)
     f_matrix = [f(x, y) for x in 0:Δx:1, y in 0:Δx:1]
 
     # Solve using FDM
-    u_fdm = poisson_2d_fdm(N, f_matrix, Δx)
+    u_fdm = poisson_fdm(N, f_matrix, Δx)
 
     # Solve using FEM
     f_func(x, y) = 1.0
-    u_fem = poisson_2d_fem(N, f_func, Δx)
+    u_fem = poisson_fem(N, f_func, Δx)
 
+    u_sp = poisson_spectral(N, f_func, Δx)
     # Calculate the exact solution (for comparison, assuming f=1 leads to a simple linear solution)
     u_exact = [x * (1 - x) * y * (1 - y) for x in 0:Δx:1, y in 0:Δx:1]
 
     # Calculate the relative error norms
     error_fdm = norm(u_fdm - u_exact) / norm(u_exact)
     error_fem = norm(u_fem - u_exact) / norm(u_exact)
+    error_sp = norm(u_sp - u_exact) / norm(u_exact)
 
     println("Grid Points: $N")
     println("Relative Error in FDM: $error_fdm")
     println("Relative Error in FEM: $error_fem")
+    println("Relative Error in SP: $error_sp")
     println("------------------------------------------------")
     end
 end
