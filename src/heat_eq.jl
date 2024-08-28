@@ -43,7 +43,7 @@ Solve the 1D heat equation using the Spectral Method.
 
 function heat_spectral(N, α, T, Δt)
     # Define the spatial domain
-    L = 1.0
+    L = 2.0
     dx = L / N
     x = dx * (0:N)  # N+1 points
 
