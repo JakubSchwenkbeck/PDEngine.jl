@@ -15,7 +15,7 @@
 - **Finite Element Method (FEM)**: Ideal for complex geometries and adaptive mesh refinement.
 - **Spectral Methods**: Provides high accuracy for smooth solutions and periodic boundary conditions.
 
-## Usage
+## Usage (Already adjusted for not released v0.0.95, use Manual for accurate usage)
 **Using the Package**:
 ```julia
     using PDEngine
