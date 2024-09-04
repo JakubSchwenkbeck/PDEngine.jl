@@ -18,7 +18,7 @@ include("../src/navier_stokes_eq.jl")
     Δt = 0.001
 
     # Run the solver
-    u, v, p = navier_stokes_2d(N, ν, T, Δx, Δt)
+    u, v, p = navier_stokes(N, ν, T, Δx, Δt)
 
     # Test 1.1: Ensure the output is the correct size
     @test size(u) == (N+1, N+1)

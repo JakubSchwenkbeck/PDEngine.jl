@@ -3,7 +3,7 @@ using FFTW  # For FFT operations
 
 
 function poisson(N,f,Δx)
-poisson_spectral(N,f,Δx)
+poisson_fdm(N,f,Δx)
 
 
 end
@@ -130,8 +130,8 @@ function poisson_spectral(N, f, Δx)
     F_hat = rfft(F)
     
     # Frequency arrays
-    kx = 2π * [0:N÷2; -N÷2+1:-1] / (N*Δx)
-    ky = 2π * [0:N÷2; -N÷2+1:-1] / (N*Δx)
+    kx = 2π * [0:N÷2; -N÷2+1:-1] / (N * Δx)
+    ky = 2π * [0:N÷2; -N÷2+1:-1] / (N * Δx)
     
     # Create frequency grid
     KX, KY = meshgrid(kx, ky)
@@ -141,19 +141,20 @@ function poisson_spectral(N, f, Δx)
     
     # Avoid division by zero (at zero frequency)
     L[L .== 0] .= 1
-
-
-    if( size(F_hat)==size(L) )
+    
+    # Reshape L to match the shape of F_hat
+    L = L[1:size(F_hat, 1), 1:size(F_hat, 2)]
+    
     # Solve in frequency domain
     U_hat = F_hat ./ L
-    end 
-
+    
     # Perform inverse FFT to get solution in spatial domain
     u = irfft(U_hat)
     
     # Return real part of the solution
     return real(u)
 end
+
 """
 Create a meshgrid for given vectors `x` and `y`.
 
