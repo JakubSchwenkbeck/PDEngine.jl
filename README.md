@@ -1,10 +1,6 @@
-# PDEngine.jl (v0.0.9)
-
+# PDEngine.jl [![version](https://juliahub.com/docs/General/PDEngine/stable/version.svg)](https://juliahub.com/ui/Packages/General/PDEngine)
 **PDEngine.jl** is a Julia library designed for solving partial differential equations (PDEs) using a variety of numerical methods. This library aims to provide efficient, flexible, and easy-to-use solvers for some of the most common PDEs encountered in scientific and engineering problems.
 [Documentation](https://jakubschwenkbeck.github.io/PDEngine.jl/)
-
-## v0.0.9 now available : "pkg> add PDEngine" !!
-[Pull-Request](https://github.com/JuliaRegistries/General/pull/113590)
 
 ## Features
 
@@ -19,7 +15,7 @@
 - **Finite Element Method (FEM)**: Ideal for complex geometries and adaptive mesh refinement.
 - **Spectral Methods**: Provides high accuracy for smooth solutions and periodic boundary conditions.
 
-## Usage
+## Usage (Already adjusted for not released v0.0.95, use Manual for accurate usage)
 **Using the Package**:
 ```julia
     using PDEngine
@@ -30,12 +26,12 @@
     T = 0.1
     α = 0.01
     N = 100
-    temperature_distribution = heat_eq_1d_fdm(N, α, T, Δx, Δt) # solving the heat equation with the finite differences method
+    temperature_distribution = heat(N, α, T, Δx, Δt) # solving the heat equation with the default (spectral method)
 
     # Example: Solving Poisson's equation in 2D
     f = zeros(N+1, N+1)  # Example source term
     Δx = 0.01
-    poisson_solution = poisson_2d_fem(N, f, Δx)  # solving the poisson equations with the finite elements method
+    poisson_solution = poisson_fem(N, f, Δx)  # solving the poisson equations,set to use with the finite elements method
 ```
 
 ## Currently working on:
